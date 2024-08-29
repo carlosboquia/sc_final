@@ -61,8 +61,13 @@ class LibraryItem():
     @property
     def author(self) -> str:
         return self.__author
-    
+
     @property
     def genre(self) -> Genre:
         return self.__genre
+    
+    def __str__(self) -> str:
+        return (f"Title: {self.__title}"
+            + f"\nAuthor: {self.__author}"
+            + f"\nGenre: {self.__genre.name.replace('_',' ').title()}")
         
