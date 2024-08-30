@@ -19,7 +19,7 @@ class LibraryItem():
     
     """
 
-    def __init__(self, title:str, author:str, genre: Genre,):
+    def __init__(self, title:str, author:str, genre: Genre, item_id:int, is_borrowed:bool):
 
         """
         Grabs the title, author and genre of a book from the library
@@ -62,15 +62,15 @@ class LibraryItem():
             raise ValueError("Invalid Genre")
         
         # Part 2
-       # if isinstance(item_id,int):
-       #     self.__item_id = item_id
-       # else:
-       #     raise ValueError("Item ID must be numeric")
-       # 
-       # if isinstance(is_borrowed, bool):
-       #     self.__is_borrowed = is_borrowed
-       # else:
-       #     raise ValueError ("Is Borrowed must be boolean value")
+        if isinstance(item_id,int):
+            self.__item_id = item_id
+        else:
+            raise ValueError("Item ID must be numeric")
+        
+        if isinstance(is_borrowed, bool):
+            self.__is_borrowed = is_borrowed
+        else:
+            raise ValueError ("Is Borrowed must be boolean value")
         
 
     # Accessors
@@ -90,16 +90,18 @@ class LibraryItem():
     def __str__(self) -> str:
         return (f"Title: {self.__title}"
             + f"\nAuthor: {self.__author}"
-            + f"\nGenre: {self.__genre.name.replace('_',' ').title()}")
+            + f"\nGenre: {self.__genre.name.replace('_',' ').title()}"
+            + f"\nItem ID: {self.__item_id}"
+            + f"\nIs Borrowed? {self.__is_borrowed}") 
     
     # Part 2
-    #@property
-    #def item_id(self) -> int:
-    #    return self.__item_id
-    #
-    #@property
-    #def is_borrowed(self) -> bool:
-    #    return self.__is_borrowed
+    @property
+    def item_id(self) -> int:
+        return self.__item_id
+    
+    @property
+    def is_borrowed(self) -> bool:
+        return self.__is_borrowed
     
 
 

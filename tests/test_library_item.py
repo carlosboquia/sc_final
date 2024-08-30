@@ -13,22 +13,22 @@ from library_item.library_item import LibraryItem
 
 class TestClient(unittest.TestCase):
     def test_init_valid(self):
-        library_item = LibraryItem ("Die Hard", "Bruce Willis", Genre.TRUE_CRIME)
+        library_item = LibraryItem ("Die Hard", "Bruce Willis", Genre.TRUE_CRIME, 1244, True)
 
     def test_init_invalid_title(self):
         with self.assertRaises(ValueError):
-            library_item = LibraryItem(" ", "Bruce Willis", Genre.TRUE_CRIME)
+            library_item = LibraryItem(" ", "Bruce Willis", Genre.TRUE_CRIME, 1244, True)
 
     def test_init_invalid_author(self):
         with self.assertRaises(ValueError):
-            library_item = LibraryItem ("Die Hard", " ", Genre.TRUE_CRIME)
+            library_item = LibraryItem ("Die Hard", " ", Genre.TRUE_CRIME, 1244, True)
 
     def test_init_invalid_genre(self):
         with self.assertRaises(ValueError):
-            library_item = LibraryItem ("Die Hard", "Bruce Willis", "invalid")
+            library_item = LibraryItem ("Die Hard", "Bruce Willis", "invalid", 1244, True)
 
     def setUp(self):
-        self.library_item = LibraryItem("Die Hard", "Bruce Willis", Genre.TRUE_CRIME)
+        self.library_item = LibraryItem("Die Hard", "Bruce Willis", Genre.TRUE_CRIME, 1244, True)
     
     def test_title_accessor(self):
         self.assertEqual("Die Hard", self.library_item.title)
@@ -42,5 +42,7 @@ class TestClient(unittest.TestCase):
     def test_str(self):
         expected = ("Title: Die Hard\n"
                     + "Author: Bruce Willis\n"
-                    + "Genre: True Crime")
+                    + "Genre: True Crime\n"
+                    + "Item ID: 1244\n"
+                    + "Is Borrowed? True")
         self.assertEqual(expected, str(self.library_item))
