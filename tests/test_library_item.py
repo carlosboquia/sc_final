@@ -13,7 +13,7 @@ from library_item.library_item import LibraryItem
 
 class TestClient(unittest.TestCase):
     def test_init_valid(self):
-        library_item = LibraryItem ("Book", "Bruce Willis", Genre.TRUE_CRIME)
+        library_item = LibraryItem ("Die Hard", "Bruce Willis", Genre.TRUE_CRIME)
 
     def test_init_invalid_title(self):
         with self.assertRaises(ValueError):
@@ -21,17 +21,17 @@ class TestClient(unittest.TestCase):
 
     def test_init_invalid_author(self):
         with self.assertRaises(ValueError):
-            library_item = LibraryItem ("Book", " ", Genre.TRUE_CRIME)
+            library_item = LibraryItem ("Die Hard", " ", Genre.TRUE_CRIME)
 
     def test_init_invalid_genre(self):
         with self.assertRaises(ValueError):
-            library_item = LibraryItem ("Book", "Bruce Willis", "invalid")
+            library_item = LibraryItem ("Die Hard", "Bruce Willis", "invalid")
 
     def setUp(self):
-        self.library_item = LibraryItem("Book", "Bruce Willis", Genre.TRUE_CRIME)
+        self.library_item = LibraryItem("Die Hard", "Bruce Willis", Genre.TRUE_CRIME)
     
     def test_title_accessor(self):
-        self.assertEqual("Book", self.library_item.title)
+        self.assertEqual("Die Hard", self.library_item.title)
 
     def test_author_accessor(self):
         self.assertEqual("Bruce Willis", self.library_item.author)
@@ -40,7 +40,7 @@ class TestClient(unittest.TestCase):
         self.assertEqual(Genre.TRUE_CRIME, self.library_item.genre)
 
     def test_str(self):
-        expected = ("Title: Book\n"
+        expected = ("Title: Die Hard\n"
                     + "Author: Bruce Willis\n"
                     + "Genre: True Crime")
         self.assertEqual(expected, str(self.library_item))
