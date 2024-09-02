@@ -105,3 +105,5 @@ class LibraryItem():
     
 
 
+name = "ronald"
+print(name)

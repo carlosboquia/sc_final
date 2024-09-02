@@ -3,7 +3,7 @@ This project will be developed over the course of several activities.  Each
 activity will help to reinforce the knowledge gained in the module.
 
 ## Author
-[Your name]
+Carlos Boquia
 
 ## Activity
 Activity 1: Classes and Encapsulation.

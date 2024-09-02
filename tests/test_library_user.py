@@ -8,3 +8,11 @@ the following command:
 """
 
 import unittest
+from borrower_status.borrower_status import BorrowerStatus
+from library_user.library_user import LibraryUser
+
+
+class TestClient(unittest.TestCase):
+
+    def test_init_valid(self):
+        library_user = LibraryUser (1244, "Jackie Chan", "44@gmail.com", BorrowerStatus.ACTIVE)
