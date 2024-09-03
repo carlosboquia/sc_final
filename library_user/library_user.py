@@ -11,25 +11,42 @@ class LibraryUser():
     Represents the status of library user
 
     Attributes:
-
-    
+        user_id (int): The unique user id value of the library user.
+        name (str): The name of the library user.
+        email: The email address of the library user.
+        borrower_status: The current status of the library user.
     
     """
-
     def __init__(self, user_id:int, name:str, email:str, borrower_status: BorrowerStatus):
-
+        """
+        Args:
+            user_id (int): The unique user id value of the library user.
+            name (str): The name of the library user.
+            email(str): The email address of the library user.
+            borrower_status(BorrowStatus): The current status of the library user.
         
-        if user_id <= 99:
-            raise ValueError("Invalid User ID: must be greater than 99")
-        elif not isinstance(user_id, int):
+        Returns:
+            self.__user_id (int): Returns a private attribute of the unique user id value of the library user.
+            self.__name (str): Returns a private attribute of the name of the library user.
+            self.__email(str): Returns a private attribute of the email address of the library user.
+            self.__borrower_status(BorrowStatus): Returns a private attribute of the current status of the library user.
+        Raises:
+            ValueError: User ID must be numeric
+            ValueError: name cannot be blank
+            ValueError: invalid email address
+            ValueError: invalid borrower status
+        """
+        if not isinstance(user_id, int):
             raise ValueError("User ID must be numeric")
+        elif user_id <= 99:
+            raise ValueError("Invalid User ID: must be greater than 99")
         else:
             self.__user_id = user_id
 
         if len(name.strip()) == 0:
-            self.__name = name
-        else:
             raise ValueError("Name cannot be blank")
+        else:
+            self.__name = name
         
         if isinstance(email,str):
             try:
@@ -48,33 +65,69 @@ class LibraryUser():
     # Accessors
     @property
     def user_id(self) -> int:
+        """
+        Accessor for the user_id attribute
+        """      
         return self.__user_id
     
+    @property
     def name(self) -> str:
+        """
+        Accessor for the name attribute
+        """               
         return self.__name
     
+    @property
     def email(self) -> str:
+        """
+        Accessor for the email attribute
+        """                
         return self.__email
     
+    @property
     def borrower_status(self) -> BorrowerStatus:
+        """
+        Accessor for the borrower_status attribute
+        """                
         return self.__borrower_status
     
     def __str__(self) -> str:
+        """
+        Returns
+            str: A string to represent the format for the library user:
+              user_id, name, email, borrower_status. 
+
+        Example:
+               User ID: 1244
+               Name: Jackie Chan
+               Email: 44@gmail.com
+               Borrower Status: Active
+        """
+                
         return (f"User ID: {self.__user_id}"
             + f"\nName: {self.__name}"
             + f"\nEmail: {self.__email}"
-            + f"\nBorrower Status: {self.__item_id.name.replace('_',' ').title()}")
+            + f"\nBorrower Status: {self.__borrower_status.name.replace('_',' ').title()}")
     
-    def borrow_item(borrower_status:BorrowerStatus, name:str) -> str:
-        if borrower_status is BorrowerStatus.DELINQUENT:
-            raise ValueError("f{name} cannot borrow an item due to their {borrower_status}.")
+    def borrow_item(self) -> str:
+        """
+        Accessor for the borrow_item attribute
+
+        Returns
+        """
+        if self.__borrower_status is BorrowerStatus.DELINQUENT:
+            raise ValueError(f"{self.__name} cannot borrow an item due to their {self.__borrower_status.name.replace('_',' ').title()} status.")
         else:
-            return(f"{name} is eliigble to borrow the item")
+            return(f"{self.__name} is eligible to borrow the item")
         
-    def return_item(borrower_status:BorrowerStatus, name:str) -> str:
-        if borrower_status is BorrowerStatus.ACTIVE:
-            return (f"{name} has returned the item, status now changed to {borrower_status}")
+    def return_item(self) -> str:
+        """
+        Accessor for the return_item attribute
+        """
+        
+        if self.__borrower_status is BorrowerStatus.DELINQUENT:
+                self.__borrower_status = BorrowerStatus.ACTIVE
+                return (f"Item successfully returned. {self.__name} has returned the item, status now changed to: {self.__borrower_status.name.replace('_', ' ').title()}")
+
         else:
             return(f"Item successfully returned")
-        
-

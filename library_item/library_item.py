@@ -77,17 +77,38 @@ class LibraryItem():
     # Part 1
     @property
     def title(self) -> str:
+        """
+        Accessor for the Title attribute
+        """
         return self.__title
-        
+
     @property
     def author(self) -> str:
+        """
+        Accessor for the Title attribute
+        """
         return self.__author
 
     @property
     def genre(self) -> Genre:
+        """
+        Accessor for the Genre attribute
+        """   
         return self.__genre
-    
+
     def __str__(self) -> str:
+        """
+        Returns
+            str: A string to represent the format for the library item:
+              title, author, genre, item ID, and is_borrowed.
+
+        Example:
+                Title: Die Hard
+                Author: Bruce Willis
+                Genre: True Crime
+                Item ID: 1244
+                Is Borrowed? True
+        """   
         return (f"Title: {self.__title}"
             + f"\nAuthor: {self.__author}"
             + f"\nGenre: {self.__genre.name.replace('_',' ').title()}"
@@ -98,12 +119,12 @@ class LibraryItem():
     @property
     def item_id(self) -> int:
         return self.__item_id
-    
+    """
+    Accessor for the item_id attribute
+    """   
     @property
     def is_borrowed(self) -> bool:
         return self.__is_borrowed
-    
-
-
-name = "ronald"
-print(name)
+    """
+    Accessor for the is_borrowed attribute
+    """   
