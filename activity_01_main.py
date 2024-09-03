@@ -6,7 +6,9 @@ Edited by: Carlos Boquia
 Date: August 30 2024
 """
 from library_item.library_item import LibraryItem
+from library_user.library_user import LibraryUser
 from genre.genre import Genre
+from borrower_status.borrower_status import BorrowerStatus
 
 def main():
     """Test the functionality of the methods encapsulated 
@@ -32,7 +34,14 @@ def main():
 
     except ValueError as e:
         print("Invalid input.", e)
-
+    try:
+        library_user = LibraryUser(1244,"Jackie Chan", "44@gmail.com", BorrowerStatus.ACTIVE)
+        print("User ID:", library_user.user_id)
+        print("Name:", library_user.name)
+        print("Email:", library_user.email)
+        print("Borrower Status:", library_user.borrower_status.name.title())
+    except ValueError as e:
+        print("invalid input.", e)
 
     # 3. Code a statement which creates an instance of the LibraryItem class with one or more invalid inputs.
     # Use your own unique valid values for the inputs to the class.

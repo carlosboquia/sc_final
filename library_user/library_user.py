@@ -107,7 +107,7 @@ class LibraryUser():
         return (f"User ID: {self.__user_id}"
             + f"\nName: {self.__name}"
             + f"\nEmail: {self.__email}"
-            + f"\nBorrower Status: {self.__borrower_status.name.replace('_',' ').title()}")
+            + f"\nBorrower Status: {self.__borrower_status.name.title()}")
     
     def borrow_item(self) -> str:
         """
@@ -116,7 +116,7 @@ class LibraryUser():
         Returns
         """
         if self.__borrower_status is BorrowerStatus.DELINQUENT:
-            raise ValueError(f"{self.__name} cannot borrow an item due to their {self.__borrower_status.name.replace('_',' ').title()} status.")
+            raise ValueError(f"{self.__name} cannot borrow an item due to their {self.__borrower_status.name.title()} status.")
         else:
             return(f"{self.__name} is eligible to borrow the item")
         
@@ -127,7 +127,7 @@ class LibraryUser():
         
         if self.__borrower_status is BorrowerStatus.DELINQUENT:
                 self.__borrower_status = BorrowerStatus.ACTIVE
-                return (f"Item successfully returned. {self.__name} has returned the item, status now changed to: {self.__borrower_status.name.replace('_', ' ').title()}")
+                return (f"Item successfully returned. {self.__name} has returned the item, status now changed to: {self.__borrower_status.name.title()}")
 
         else:
             return(f"Item successfully returned")
