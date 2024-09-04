@@ -5,6 +5,7 @@ Date: August 30 2024
 """
 from borrower_status.borrower_status import BorrowerStatus
 from email_validator import validate_email, EmailNotValidError
+from library_item.library_item import LibraryItem
 
 class LibraryUser():
     """
@@ -131,3 +132,25 @@ class LibraryUser():
 
         else:
             return(f"Item successfully returned")
+        
+
+    def borrow_item_approval(self, library_item:LibraryItem) -> str:
+
+        """
+        Checks to see if item is available and can be borrowed by user
+
+        """    
+        if self.__borrower_status != BorrowerStatus.DELINQUENT:
+            if library_item.is_borrowed == False:
+                return "The item is available to be borrowed."
+        if self.__borrower_status != BorrowerStatus.DELINQUENT:
+            if library_item.is_borrowed != False:
+                raise Exception("The Item is not available to be borrowed.")
+        if self.__borrower_status == BorrowerStatus.DELINQUENT:
+            if library_item.is_borrowed == True:
+                raise Exception("Item is not available due your status: DELINQUENT")
+        if self.__borrower_status == BorrowerStatus.DELINQUENT:
+            if library_item.is_borrowed == True:
+                raise Exception("Cannot process request due to item not being available and your status: DELINQUENT")
+
+
