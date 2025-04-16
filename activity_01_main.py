@@ -5,9 +5,9 @@ Author: ACE Faculty
 Edited by: Carlos Boquia
 Date: August 30 2024
 """
-import subprocess
-import hashlib
-import pickle
+import subprocess      
+import hashlib        
+import pickle          
 
 from library_item.library_item import LibraryItem
 from library_user.library_user import LibraryUser
@@ -16,22 +16,27 @@ from borrower_status.borrower_status import BorrowerStatus
 from borrow_approval import borrow_item_approval
 
 
-SECRET_KEY = "supersecret123"
+# Hardcoded secret value - should not be stored in code
+SECRET_KEY = "supersecret123" 
 
 
 def insecure_function():
+    # Using eval on user input - this can run dangerous code
     user_input = "2 + 2"
-    result = eval(user_input)
+    result = eval(user_input)  # A03: Eval injection risk
     print("Eval result:", result)
 
-    subprocess.call("echo Insecure Shell Call", shell=True)
+    # Running shell commands with user input - can be exploited to run harmful commands
+    subprocess.call("echo Insecure Shell Call", shell=True)  # A05: Shell injection
 
-    m = hashlib.md5()
+    # Using MD5 for hashing - this algorithm is outdated and not secure
+    m = hashlib.md5()  
     m.update(b"password")
     print("MD5 hash:", m.hexdigest())
 
+    # Using pickle - unsafe if the data comes from an untrusted source
     data = {"user": "admin"}
-    pickled = pickle.dumps(data)
+    pickled = pickle.dumps(data)  
     print("Pickled data:", pickled)
 
 
